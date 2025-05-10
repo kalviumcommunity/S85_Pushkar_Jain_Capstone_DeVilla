@@ -90,3 +90,5 @@ Meanwhile, the community can:
 
 - 🌟 **Influencer Partnerships**  
   Collaborate with tech influencers to grow the community
+
+  Netlify Deployed Link: https://dev-villa.netlify.app/
