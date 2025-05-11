@@ -1,5 +1,6 @@
 const express = require("express");
 const profileRouter = express.Router();
+const uploadd =require("../multer/upload")
 
 const { userAuth } = require("../middlewares/auth");
 const { validateEditProfileData } = require("../utils/validation");
@@ -14,13 +15,16 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
   }
 });
 
-profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
+profileRouter.patch("/profile/edit", userAuth, upload.single('photo'),async (req, res) => {
+
   try {
     if (!validateEditProfileData(req)) {
       throw new Error("Invalid Edit Request");
     }
 
     const loggedInUser = req.user;
+    const photo = req.file ? req.file.filename : null;  
+
 
     Object.keys(req.body).forEach((key) => (loggedInUser[key] = req.body[key]));
 
